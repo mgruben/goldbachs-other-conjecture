@@ -73,7 +73,8 @@ void solve() {
      * If they are composite prime, then we want to check whether they
      * meet or fail Goldbach's Other Conjecture.
      * 
-     * The first one to fail Goldbach's Other Conjecture is printed.
+     * The first one to fail Goldbach's Other Conjecture is printed,
+     * then the search terminates.
      */
     for (int i = 3; i < 33334; i += 2) {
         cout << endl << "checking " << i << endl;
