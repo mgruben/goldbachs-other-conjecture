@@ -38,8 +38,11 @@ int getBase(int num) {
 }
 
 
-
+/**
+ * Does the given number fit Goldbach's Other Conjecture?
+ */
 bool sumOfPrimeAnd(int num, vector<int> primes) {
+    // Iterate over known primes
     for (int p: primes) {
         int s = getBase(num - p);
         if (s > 0) { 
@@ -50,9 +53,28 @@ bool sumOfPrimeAnd(int num, vector<int> primes) {
     return false;
 }
 
+/**
+ * Finds the smallest number to fail Goldbach's Other Conjecture,
+ * and narrates the search with printouts.
+ */
 void solve() {
     vector<int> primes;
     
+    /** Since we're incrementing by 2, we will never need to check
+     * whether the current number is divisible by 2, so we skip adding
+     * it to our vector of primes to save computational effort.
+     * 
+     * For odd numbers, either they are prime, or they are a composite
+     * odd number.
+     * 
+     * If they are prime, we would want to save them, so that we can
+     * iterate through them later in sumOfPrimeAnd() above.
+     * 
+     * If they are composite prime, then we want to check whether they
+     * meet or fail Goldbach's Other Conjecture.
+     * 
+     * The first one to fail Goldbach's Other Conjecture is printed.
+     */
     for (int i = 3; i < 33334; i += 2) {
         cout << endl << "checking " << i << endl;
         if (isPrime(i)) {
