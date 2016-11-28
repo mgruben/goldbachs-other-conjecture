@@ -33,7 +33,7 @@ bool sumOfPrimeAnd(int num, vector<int> primes, vector<int> range) {
     for (int p: primes) {
         int s = binaryTwiceSquare(num - p, range);
         if (s > 0) { 
-            cout << num << " - " << p << " + 2*" << s << "^2" << endl;
+            cout << num << " = " << p << " + 2*" << s << "^2" << endl;
             return true;
             }
         }
@@ -45,24 +45,18 @@ int main() {
     vector<int> range;
     for (int i; i < 100; i++) range.push_back(i+1);
     vector<int> primes;
-    primes.push_back(2);
-    primes.push_back(3);
-    primes.push_back(5);
-    primes.push_back(7);
-    primes.push_back(19);
-    primes.push_back(31);
-    for (int i: {9, 15, 21, 25, 27, 33}) {
-        cout << sumOfPrimeAnd(i, primes, range) << endl;
+
+    for (int i = 3; i < 33334; i += 2) {
+        cout << endl << "checking " << i << endl;
+        if (isPrime(i)) {
+            cout << i << " is prime!" << endl;
+            primes.push_back(i);
+        }
+        else if (!sumOfPrimeAnd(i, primes, range)){
+            cout << i << " FAILS Goldbach's Other Conjecture!" << endl;
+            break;
+        }
     }
-    
-    
-    //~ for (int i = 3; i < 34; i += 2) {
-        //~ cout << "checking " + i << endl;
-        //~ if (isPrime(i)) primes.push_back(i);
-        //~ else for (int p: primes) {
-            //~ cout << binaryTwiceSquare(i - p, range) << endl;
-        //~ }
-    //~ }
     
     return 0;
 }
