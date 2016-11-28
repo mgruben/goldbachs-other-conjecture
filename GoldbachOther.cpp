@@ -1,15 +1,18 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-int binaryTwiceSquare(int num, int range[]) {
+int binaryTwiceSquare(int num, vector<int> range) {
+    int i = 0;
+    int j = range.size();
     return -1;
 }
 
 int main() {
-    int len = 100;
-    int range [len];
-    for (int i; i < len; i++) range[i] = i+1;
+    vector<int> range;
+    for (int i; i < 100; i++) range.push_back(i+1);
     for (int i: range) cout << i << endl;
+    
     return 0;
 }
