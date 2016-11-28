@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-
+#include <math.h>
 using namespace std;
 
 // https://en.wikipedia.org/wiki/Primality_test#Pseudocode
@@ -16,22 +16,17 @@ bool isPrime(int n) {
     return true;
 }
 
-int binaryTwiceSquare(int num, vector<int> range) {
-    int i = 0;
-    int j = range.size() - 1;
-    while (i <= j) {
-        int mid = (i + j) / 2;
-        long long calc = range.at(mid) * 2 * range.at(mid);
-        if (calc == num) return mid + 1;
-        else if (calc > num) j = mid - 1;
-        else i = mid + 1;
-    }
-    return -1;
+int binaryTwiceSquare(int num) {
+    double tmp = num;
+    tmp /= 2.0;
+    tmp = sqrt(tmp);
+    if (fmod(tmp,1.0) == 0) return (int) tmp;
+    else return -1;
 }
 
-bool sumOfPrimeAnd(int num, vector<int> primes, vector<int> range) {
+bool sumOfPrimeAnd(int num, vector<int> primes) {
     for (int p: primes) {
-        int s = binaryTwiceSquare(num - p, range);
+        int s = binaryTwiceSquare(num - p);
         if (s > 0) { 
             cout << num << " = " << p << " + 2*" << s << "^2" << endl;
             return true;
@@ -40,23 +35,27 @@ bool sumOfPrimeAnd(int num, vector<int> primes, vector<int> range) {
     return false;
 }
 
-
-int main() {
-    vector<int> range;
-    for (int i; i < 100; i++) range.push_back(i+1);
+void solve() {
     vector<int> primes;
-
+    
     for (int i = 3; i < 33334; i += 2) {
         cout << endl << "checking " << i << endl;
         if (isPrime(i)) {
             cout << i << " is prime!" << endl;
             primes.push_back(i);
         }
-        else if (!sumOfPrimeAnd(i, primes, range)){
+        else if (!sumOfPrimeAnd(i, primes)){
             cout << i << " FAILS Goldbach's Other Conjecture!" << endl;
             break;
         }
     }
-    
+}
+
+void test() {
+    cout << binaryTwiceSquare(5620);
+}
+
+int main() {
+    solve();
     return 0;
 }
