@@ -16,7 +16,7 @@ bool isPrime(int n) {
     return true;
 }
 
-int binaryTwiceSquare(int num) {
+int getExponent(int num) {
     double tmp = num;
     tmp /= 2.0;
     tmp = sqrt(tmp);
@@ -26,7 +26,7 @@ int binaryTwiceSquare(int num) {
 
 bool sumOfPrimeAnd(int num, vector<int> primes) {
     for (int p: primes) {
-        int s = binaryTwiceSquare(num - p);
+        int s = getExponent(num - p);
         if (s > 0) { 
             cout << num << " = " << p << " + 2*" << s << "^2" << endl;
             return true;
@@ -52,7 +52,7 @@ void solve() {
 }
 
 void test() {
-    cout << binaryTwiceSquare(5620);
+    cout << getExponent(5620);
 }
 
 int main() {
