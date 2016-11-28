@@ -16,7 +16,20 @@ bool isPrime(int n) {
     return true;
 }
 
-int getExponent(int num) {
+/**
+ * Given some number (n-p), returns the integer which must be
+ * squared to fit Goldbach's Other Conjecture.
+ * If no such integer exists, return -1.
+ * 
+ * We know that n = p + 2*?^2.
+ * We can rewrite this as (n-p) = 2*?^2
+ * We can solve for ? = sqrt((n-p)/2)
+ * 
+ * If ? is an integer, then (n-p) fits Goldbach's Other Conjecture.
+ * 
+ * Otherwise, (n-p) does not fit Goldbach's Other Conjecture.
+ */
+int getBase(int num) {
     double tmp = num;
     tmp /= 2.0;
     tmp = sqrt(tmp);
@@ -24,9 +37,11 @@ int getExponent(int num) {
     else return -1;
 }
 
+
+
 bool sumOfPrimeAnd(int num, vector<int> primes) {
     for (int p: primes) {
-        int s = getExponent(num - p);
+        int s = getBase(num - p);
         if (s > 0) { 
             cout << num << " = " << p << " + 2*" << s << "^2" << endl;
             return true;
@@ -52,7 +67,7 @@ void solve() {
 }
 
 void test() {
-    cout << getExponent(5620);
+    cout << getBase(5620);
 }
 
 int main() {
