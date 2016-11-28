@@ -60,9 +60,10 @@ bool sumOfPrimeAnd(int num, vector<int> primes) {
 void solve() {
     vector<int> primes;
     
-    /** Since we're incrementing by 2, we will never need to check
-     * whether the current number is divisible by 2, so we skip adding
-     * it to our vector of primes to save computational effort.
+    /** Since we're incrementing by 2 and beginning with an odd, we will
+     * never need to check whether the current number is divisible by 2,
+     * so we skip adding it to our vector of primes to save
+     * computational effort.
      * 
      * For odd numbers, either they are prime, or they are a composite
      * odd number.
